@@ -6,13 +6,13 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "ParasocialsPosAPI/1.0.0": {
+      "ParasocialsPOSAPI/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.InMemory": "7.0.1",
           "Swashbuckle.AspNetCore": "6.4.0"
         },
         "runtime": {
-          "ParasocialsPosAPI.dll": {}
+          "ParasocialsPOSAPI.dll": {}
         }
       },
       "Microsoft.EntityFrameworkCore/7.0.1": {
@@ -191,7 +191,7 @@
     }
   },
   "libraries": {
-    "ParasocialsPosAPI/1.0.0": {
+    "ParasocialsPOSAPI/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
