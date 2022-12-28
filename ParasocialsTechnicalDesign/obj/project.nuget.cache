@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "H6X/XuxC5PWdRfksYf5NcCFntzI/AKhZaSA5c6C0VJrRkWTB3J4W+njZUEWQrMNMleT5lrbYkwU/B87ayYp3LQ==",
+  "dgSpecHash": "XcaMKn2KKkf0btoLdpkJc60u2OCJd+Oe+rhAxDPlhRKRYqgWCD4LZwuWIMeqZEEWQ5vZTOVdHYd94lKEwo6Xow==",
   "success": true,
-  "projectFilePath": "C:\\Users\\marti\\source\\repos\\ParasocialsTechnicalDesign\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj",
+  "projectFilePath": "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marti\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.1\\microsoft.entityframeworkcore.7.0.1.nupkg.sha512",
     "C:\\Users\\marti\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.1\\microsoft.entityframeworkcore.abstractions.7.0.1.nupkg.sha512",
