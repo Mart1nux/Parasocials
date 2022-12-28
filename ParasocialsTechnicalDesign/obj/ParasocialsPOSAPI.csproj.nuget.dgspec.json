@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marti\\source\\repos\\ParasocialsTechnicalDesign\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj": {}
+    "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marti\\source\\repos\\ParasocialsTechnicalDesign\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj": {
+    "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marti\\source\\repos\\ParasocialsTechnicalDesign\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj",
+        "projectUniqueName": "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj",
         "projectName": "ParasocialsPOSAPI",
-        "projectPath": "C:\\Users\\marti\\source\\repos\\ParasocialsTechnicalDesign\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj",
+        "projectPath": "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj",
         "packagesPath": "C:\\Users\\marti\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marti\\source\\repos\\ParasocialsTechnicalDesign\\ParasocialsTechnicalDesign\\obj\\",
+        "outputPath": "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\marti\\AppData\\Roaming\\NuGet\\NuGet.Config",

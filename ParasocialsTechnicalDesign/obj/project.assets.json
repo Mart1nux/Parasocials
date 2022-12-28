@@ -1014,11 +1014,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\marti\\source\\repos\\ParasocialsTechnicalDesign\\ParasocialsTechnicalDesign\\ParasocialsPosAPI.csproj",
-      "projectName": "ParasocialsPosAPI",
-      "projectPath": "C:\\Users\\marti\\source\\repos\\ParasocialsTechnicalDesign\\ParasocialsTechnicalDesign\\ParasocialsPosAPI.csproj",
+      "projectUniqueName": "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj",
+      "projectName": "ParasocialsPOSAPI",
+      "projectPath": "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj",
       "packagesPath": "C:\\Users\\marti\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\marti\\source\\repos\\ParasocialsTechnicalDesign\\ParasocialsTechnicalDesign\\obj\\",
+      "outputPath": "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\marti\\AppData\\Roaming\\NuGet\\NuGet.Config",
