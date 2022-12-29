@@ -16,7 +16,7 @@ namespace ParasocialsPOSAPI.Data
         //public DbSet<Tax> Taxes { get; set; }
         //public DbSet<Customer> Customers { get; set; }
         //public DbSet<Employee> Employees { get; set; }
-        //public DbSet<Position> Positions { get; set; }
+        public DbSet<Position> Positions { get; set; }
         //public DbSet<Shift> Shifts { get; set; }
         public DbSet<Tip> Tips { get; set; }
         //public DbSet<Company> Companies { get; set; }
