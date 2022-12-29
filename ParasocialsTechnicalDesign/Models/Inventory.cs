@@ -2,7 +2,7 @@
 {
     public class Inventory
     {
-        public Guid productId { get; set; }
+        public Product product { get; set; }
         public int AmmountRemaining { get; set; }
         public DateTime LastRestockDate { get; set; }
     }

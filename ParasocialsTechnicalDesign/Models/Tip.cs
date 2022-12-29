@@ -6,6 +6,6 @@
         public String Giver { get; set; }
         public TipType Type { get; set; }
         public DateTime GivenDate { get; set; }
-        public Guid Receiver { get; set; }
+        public Employee Receiver { get; set; }
     }
 }

@@ -12,5 +12,6 @@ namespace ParasocialsPOSAPI.Models
         public OrderPaymentMethod PaymentMethod { get; set; }
         public string TransactionDetails { get; set; }
         public string TransactionCommnets { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

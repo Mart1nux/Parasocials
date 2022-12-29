@@ -78,13 +78,16 @@ namespace ParasocialsPOSAPI.Controllers
             var position = await dbContext.Positions.FindAsync(positionId);
             if (position != null)
             {
-                position.PositionId = positionId;
-                position.Title = title;
-                position.Description = descritpion;
-                position.Permisions = (PositionPermisions)permissions;
-                position.AccessToObjects = (PositionAccessToObjects)accesToObjects;
-                dbContext.SaveChanges();
-                return Ok(position);
+                if (Enum.IsDefined(typeof(PositionPermisions), permissions) && Enum.IsDefined(typeof(PositionAccessToObjects), accesToObjects))
+                {
+                    position.PositionId = positionId;
+                    position.Title = title;
+                    position.Description = descritpion;
+                    position.Permisions = (PositionPermisions)permissions;
+                    position.AccessToObjects = (PositionAccessToObjects)accesToObjects;
+                    dbContext.SaveChanges();
+                    return Ok(position);
+                }
             }
             return NotFound();
         }

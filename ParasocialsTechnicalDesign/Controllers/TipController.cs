@@ -44,7 +44,7 @@ namespace ParasocialsPOSAPI.Controllers
                 Giver = giver,
                 Type = tipType,
                 GivenDate = givenDate,
-                Receiver = receiver
+                Receiver = new Employee()//receiver
             };
 
             await dbContext.Tips.AddAsync(tip);
