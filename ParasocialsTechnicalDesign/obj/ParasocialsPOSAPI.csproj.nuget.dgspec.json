@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj": {}
+    "C:\\Users\\lukas\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj": {
+    "C:\\Users\\lukas\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj",
+        "projectUniqueName": "C:\\Users\\lukas\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj",
         "projectName": "ParasocialsPOSAPI",
-        "projectPath": "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj",
-        "packagesPath": "C:\\Users\\marti\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\obj\\",
+        "projectPath": "C:\\Users\\lukas\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj",
+        "packagesPath": "C:\\Users\\lukas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\lukas\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\marti\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\lukas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -68,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
