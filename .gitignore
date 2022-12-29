@@ -16,11 +16,8 @@
 # Mono auto generated files
 mono_crash.*
 
-# Karma debug file
-debug.txt
-
 # Build results
-[Dd]ebug/
+*/[Dd]ebug/*
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
