@@ -6,7 +6,6 @@ using ParasocialsPOSAPI.Models;
 namespace ParasocialsPOSAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
     public class TipController : Controller
     {
         private readonly ParasocialsPOSAPIDbContext dbContext;
@@ -17,16 +16,17 @@ namespace ParasocialsPOSAPI.Controllers
         }
 
         [HttpGet]
+        [Route("/getTips")]
         public async Task<IActionResult> GetTipList()
         {
             return Ok(await dbContext.Tips.ToListAsync());
         }
 
         [HttpGet]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> GetTip([FromRoute] Guid id)
+        [Route("/getTipById/{tipId:guid}")]
+        public async Task<IActionResult> GetTip([FromRoute] Guid tipId)
         {
-            var tip = await dbContext.Tips.FindAsync(id);
+            var tip = await dbContext.Tips.FindAsync(tipId);
             if (tip != null)
             {
                 return Ok(tip);
@@ -35,16 +35,16 @@ namespace ParasocialsPOSAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddTip(AddTip addTip)
+        [Route("/createTip/{giver}")]
+        public async Task<IActionResult> AddTip([FromRoute] string giver, TipType tipType, DateTime givenDate, Guid receiver)
         {
             var tip = new Tip()
             {
                 TipId = Guid.NewGuid(),
-                Giver = addTip.Giver,
-                Type = addTip.Type,
-                GivenDate = DateTime.Now,
-                Receiver = addTip.Receiver
-
+                Giver = giver,
+                Type = tipType,
+                GivenDate = givenDate,
+                Receiver = receiver
             };
 
             await dbContext.Tips.AddAsync(tip);
@@ -54,10 +54,10 @@ namespace ParasocialsPOSAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> DeleteTip([FromRoute] Guid id)
+        [Route("/deleteTipById/{tipId:guid}")]
+        public async Task<IActionResult> DeleteTip([FromRoute] Guid tipId)
         {
-            var tip = await dbContext.Tips.FindAsync(id);
+            var tip = await dbContext.Tips.FindAsync(tipId);
             if (tip != null)
             {
                 dbContext.Tips.Remove(tip);

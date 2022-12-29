@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ParasocialsPOSAPI.Data;
 using ParasocialsPOSAPI.Models;
+using System;
 
 namespace ParasocialsPOSAPI.Controllers
 {
@@ -50,20 +51,24 @@ namespace ParasocialsPOSAPI.Controllers
         [Route("/createPosition/{title}")]
         public async Task<IActionResult> AddPosition([FromRoute] string title, string descritpion, int permissions, int accesToObjects)
         {
-            var position = new Position()
+            if (Enum.IsDefined(typeof(PositionPermisions), permissions) && Enum.IsDefined(typeof(PositionAccessToObjects), accesToObjects))
             {
-                PositionId = Guid.NewGuid(),
-                Title = title,
-                Description = descritpion,
-                Permisions = (PositionPermisions)permissions,
-                AccessToObjects = (PositionAccessToObjects)accesToObjects
+                var position = new Position()
+                {
+                    PositionId = Guid.NewGuid(),
+                    Title = title,
+                    Description = descritpion,
+                    Permisions = (PositionPermisions)permissions,
+                    AccessToObjects = (PositionAccessToObjects)accesToObjects
 
-            };
+                };
 
-            await dbContext.Positions.AddAsync(position);
-            await dbContext.SaveChangesAsync();
+                await dbContext.Positions.AddAsync(position);
+                await dbContext.SaveChangesAsync();
 
-            return Ok(position);
+                return Ok(position);
+            }
+            return BadRequest();
         }
 
         [HttpPut]
