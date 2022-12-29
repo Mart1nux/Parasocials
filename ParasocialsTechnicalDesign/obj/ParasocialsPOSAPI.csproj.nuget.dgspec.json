@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj": {}
+    "C:\\Users\\ernes\\Universitetas\\5Semestras\\projektavimas\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj": {
+    "C:\\Users\\ernes\\Universitetas\\5Semestras\\projektavimas\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj",
+        "projectUniqueName": "C:\\Users\\ernes\\Universitetas\\5Semestras\\projektavimas\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj",
         "projectName": "ParasocialsPOSAPI",
-        "projectPath": "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj",
-        "packagesPath": "C:\\Users\\marti\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marti\\source\\repos\\Parasocials\\ParasocialsTechnicalDesign\\obj\\",
+        "projectPath": "C:\\Users\\ernes\\Universitetas\\5Semestras\\projektavimas\\Parasocials\\ParasocialsTechnicalDesign\\ParasocialsPOSAPI.csproj",
+        "packagesPath": "C:\\Users\\ernes\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ernes\\Universitetas\\5Semestras\\projektavimas\\Parasocials\\ParasocialsTechnicalDesign\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\marti\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ernes\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,7 +40,29 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.1, )"
+            },
             "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[7.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite.Core": {
               "target": "Package",
               "version": "[7.0.1, )"
             },
@@ -55,8 +77,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -68,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

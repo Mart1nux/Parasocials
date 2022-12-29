@@ -1,4 +1,7 @@
-﻿namespace ParasocialsPOSAPI.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace ParasocialsPOSAPI.Models
 {
     public class Tip
     {
