@@ -10,7 +10,7 @@ namespace ParasocialsPOSAPI.Data
         }
 
         //public DbSet<Discount> Discounts { get; set; }
-        //public DbSet<Order> Orders { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
         //public DbSet<Reservation> Reservations { get; set; }
         //public DbSet<Tax> Taxes { get; set; }
