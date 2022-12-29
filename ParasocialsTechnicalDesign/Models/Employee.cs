@@ -7,6 +7,7 @@
         public DateTime ClockInTime { get; set; }
         public DateTime ClockOutTime { get; set; }
         public decimal HourlyPayRate { get; set; }
-        public Guid Position { get; set; }
+        public Position Position { get; set; }
+        public List<Shift> Shifts { get; set; }
     }
 }
