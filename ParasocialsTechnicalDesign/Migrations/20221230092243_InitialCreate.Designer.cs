@@ -11,7 +11,7 @@ using ParasocialsPOSAPI.Data;
 namespace ParasocialsPOSAPI.Migrations
 {
     [DbContext(typeof(ParasocialsPOSAPIDbContext))]
-    [Migration("20221229214127_InitialCreate")]
+    [Migration("20221230092243_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -48,35 +48,6 @@ namespace ParasocialsPOSAPI.Migrations
                     b.HasIndex("ProductsProductId");
 
                     b.ToTable("GroupProduct");
-                });
-
-            modelBuilder.Entity("ParasocialsPOSAPI.Models.Company", b =>
-                {
-                    b.Property<Guid>("SupplierId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ContactInformation")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("RelationshipType")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ServiceType")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("SupplierId");
-
-                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("ParasocialsPOSAPI.Models.Customer", b =>
@@ -129,6 +100,7 @@ namespace ParasocialsPOSAPI.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Ammount")
+                        .HasPrecision(14, 2)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("DiscountEnd")
@@ -162,6 +134,7 @@ namespace ParasocialsPOSAPI.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("HourlyPayRate")
+                        .HasPrecision(14, 2)
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("PositionId")
@@ -342,6 +315,7 @@ namespace ParasocialsPOSAPI.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Price")
+                        .HasPrecision(14, 2)
                         .HasColumnType("TEXT");
 
                     b.HasKey("ProductId");
@@ -373,7 +347,7 @@ namespace ParasocialsPOSAPI.Migrations
                     b.Property<int>("RefundType")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateOnly>("RequestDate")
+                    b.Property<DateTime>("RequestDate")
                         .HasColumnType("TEXT");
 
                     b.HasKey("RefundTicketId");
@@ -432,6 +406,7 @@ namespace ParasocialsPOSAPI.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Amount")
+                        .HasPrecision(14, 2)
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("GroupId")
@@ -475,6 +450,35 @@ namespace ParasocialsPOSAPI.Migrations
                     b.HasIndex("ReceiverId");
 
                     b.ToTable("Tips");
+                });
+
+            modelBuilder.Entity("System.Data.Entity.Company", b =>
+                {
+                    b.Property<Guid>("SupplierId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ContactInformation")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("RelationshipType")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ServiceType")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("SupplierId");
+
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("EmployeeShift", b =>

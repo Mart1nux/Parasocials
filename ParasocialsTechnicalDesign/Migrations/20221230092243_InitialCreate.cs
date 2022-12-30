@@ -33,7 +33,7 @@ namespace ParasocialsPOSAPI.Migrations
                 {
                     DiscountId = table.Column<Guid>(type: "TEXT", nullable: false),
                     Type = table.Column<int>(type: "INTEGER", nullable: false),
-                    Ammount = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Ammount = table.Column<decimal>(type: "TEXT", precision: 14, scale: 2, nullable: false),
                     DiscountStart = table.Column<DateTime>(type: "TEXT", nullable: false),
                     DiscountEnd = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
@@ -89,7 +89,7 @@ namespace ParasocialsPOSAPI.Migrations
                 {
                     RefundTicketId = table.Column<Guid>(type: "TEXT", nullable: false),
                     Order = table.Column<Guid>(type: "TEXT", nullable: false),
-                    RequestDate = table.Column<DateOnly>(type: "TEXT", nullable: false),
+                    RequestDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Granted = table.Column<bool>(type: "INTEGER", nullable: false),
                     Reason = table.Column<string>(type: "TEXT", nullable: false),
                     RefundType = table.Column<int>(type: "INTEGER", nullable: false)
@@ -181,7 +181,7 @@ namespace ParasocialsPOSAPI.Migrations
                     password = table.Column<string>(type: "TEXT", nullable: false),
                     ClockInTime = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ClockOutTime = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    HourlyPayRate = table.Column<decimal>(type: "TEXT", nullable: false),
+                    HourlyPayRate = table.Column<decimal>(type: "TEXT", precision: 14, scale: 2, nullable: false),
                     PositionId = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -221,7 +221,7 @@ namespace ParasocialsPOSAPI.Migrations
                 {
                     TaxId = table.Column<Guid>(type: "TEXT", nullable: false),
                     GroupId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Amount = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Amount = table.Column<decimal>(type: "TEXT", precision: 14, scale: 2, nullable: false),
                     Type = table.Column<int>(type: "INTEGER", nullable: false),
                     Reason = table.Column<int>(type: "INTEGER", nullable: false)
                 },
@@ -325,7 +325,7 @@ namespace ParasocialsPOSAPI.Migrations
                     ProductId = table.Column<Guid>(type: "TEXT", nullable: false),
                     Barcode = table.Column<string>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Price = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Price = table.Column<decimal>(type: "TEXT", precision: 14, scale: 2, nullable: false),
                     InventoryId = table.Column<Guid>(type: "TEXT", nullable: false),
                     OrderId = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
