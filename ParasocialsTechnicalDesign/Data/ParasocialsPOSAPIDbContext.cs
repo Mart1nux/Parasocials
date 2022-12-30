@@ -11,7 +11,7 @@ namespace ParasocialsPOSAPI.Data
 
         //public DbSet<Discount> Discounts { get; set; }
         //public DbSet<Order> Orders { get; set; }
-        //public DbSet<Product> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
         //public DbSet<Reservation> Reservations { get; set; }
         //public DbSet<Tax> Taxes { get; set; }
         //public DbSet<Customer> Customers { get; set; }
@@ -19,7 +19,7 @@ namespace ParasocialsPOSAPI.Data
         public DbSet<Position> Positions { get; set; }
         public DbSet<Shift> Shifts { get; set; }
         public DbSet<Tip> Tips { get; set; }
-        //public DbSet<Company> Companies { get; set; }
+        public DbSet<Company> Companies { get; set; }
         //public DbSet<RefundTicket> RefundTickets { get; set; }
     }
 }
