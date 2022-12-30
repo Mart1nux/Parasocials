@@ -1,7 +1,10 @@
-﻿namespace ParasocialsPOSAPI.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ParasocialsPOSAPI.Models
 {
     public class Employee
     {
+        [Key]
         public string Email { get; set; }
         public string password { get; set; }
         public DateTime ClockInTime { get; set; }
