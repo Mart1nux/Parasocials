@@ -35,7 +35,8 @@ namespace ParasocialsPOSAPI.Controllers
                 DeliveryDate = deliveryDate,
                 PaymentMethod = paymentMethod,
                 TransactionDetails = transactionDetails,
-                TransactionCommnets = transactionComments
+                TransactionCommnets = transactionComments,
+                Products = new List<Product>()
             };
             await dbContext.Orders.AddAsync(order);
             await dbContext.SaveChangesAsync();
@@ -83,8 +84,13 @@ namespace ParasocialsPOSAPI.Controllers
             var product = await dbContext.Products.FindAsync(productId);
             if (order != null && product != null)
             {
+                if (order.Products == null)
+                {
+                    order.Products = new List<Product>();
+                }
                 order.Products.Add(product);
                 await dbContext.SaveChangesAsync();
+                return Ok(order);
             }
             return NotFound();
         }
