@@ -59,8 +59,8 @@ namespace ParasocialsPOSAPI.Controllers
                     Title = title,
                     Description = descritpion,
                     Permisions = (PositionPermisions)permissions,
-                    AccessToObjects = (PositionAccessToObjects)accesToObjects
-
+                    AccessToObjects = (PositionAccessToObjects)accesToObjects,
+                    Employees = new List<Employee>()
                 };
 
                 await dbContext.Positions.AddAsync(position);
