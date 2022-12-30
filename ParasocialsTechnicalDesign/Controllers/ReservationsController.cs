@@ -15,6 +15,7 @@ namespace ParasocialsPOSAPI.Controllers
             this.dbContext = dbContext;
         }
 
+
         [HttpGet]
         [Route("/reservations")]
         public async Task<IActionResult> GetReservationsList()
