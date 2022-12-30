@@ -59,7 +59,7 @@ namespace ParasocialsPOSAPI.Data
             modelBuilder.Entity<Group>().HasMany(e => e.Products).WithMany(x => x.Groups);
             modelBuilder.Entity<Inventory>().HasOne(e => e.product).WithOne(x => x.Inventory);
             modelBuilder.Entity<Loyalty>().HasOne(e => e.Customer).WithOne(x => x.Loyalty);
-            modelBuilder.Entity<Order>().HasMany(e => e.Products).WithOne(x => x.Order);
+            modelBuilder.Entity<Order>().HasMany(e => e.Products).WithMany(x => x.Orders);
             modelBuilder.Entity<Reservation>().HasOne(e => e.Premise).WithOne(x => x.Reservation);
             modelBuilder.Entity<Shift>().HasMany(e => e.Employees).WithMany(x => x.Shifts);
             modelBuilder.Entity<Tax>().HasOne(e => e.Group).WithOne(x => x.Tax);
