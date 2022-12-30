@@ -77,17 +77,17 @@ namespace ParasocialsPOSAPI.Controllers
 
 
         [HttpPost]
-        [Route("/AddCompany")]
-        public async Task<IActionResult> AddCompany(AddCompany addCompany)
+        [Route("/AddCompany/{companyName}")]
+        public async Task<IActionResult> AddCompany([FromRoute] string companyName, CompanyServiceType serviceType, string address, string contactInformation, CompanyRelationshipType relationshipType)
         {
             var company = new Company()
             {
                 SupplierId = Guid.NewGuid(),
-                CompanyName = addCompany.CompanyName,
-                ServiceType = addCompany.ServiceType,
-                Address = addCompany.Address,
-                ContactInformation = addCompany.ContactInformation,
-                RelationshipType = addCompany.RelationshipType
+                CompanyName = companyName,
+                ServiceType = serviceType,
+                Address = address,
+                ContactInformation = companyName,
+                RelationshipType = relationshipType
             };
 
             await dbContext.Companies.AddAsync(company);

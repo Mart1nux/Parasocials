@@ -46,7 +46,9 @@ namespace ParasocialsPOSAPI.Controllers
                 Name = name,
                 Price = price,
                 Orders = new List<Order>(),
-                Groups = new List<Group>()
+                Groups = new List<Group>(),
+                InventoryId = Guid.NewGuid(),
+                Inventory = new Inventory()
             };
             await dbContext.Products.AddAsync(product);
             await dbContext.SaveChangesAsync();
