@@ -1,4 +1,4 @@
-﻿namespace ParasocialsPOSAPI.Models;
+namespace ParasocialsPOSAPI.Models;
 
 public class Company
 {
