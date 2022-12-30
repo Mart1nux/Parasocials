@@ -10,7 +10,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ParasocialsPOSAPIDbContext>(options => options.UseInMemoryDatabase("PosDb"));
+//builder.Services.AddDbContext<ParasocialsPOSAPIDbContext>(options => options.UseInMemoryDatabase("PosDb"));
+
+builder.Services.AddDbContext<ParasocialsPOSAPIDbContext>();
+
+//var a = new ParasocialsPOSAPIDbContext();
+
 
 var app = builder.Build();
 
