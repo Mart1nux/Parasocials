@@ -4,7 +4,7 @@ namespace ParasocialsPOSAPI.Models
 {
     public class Shift
     {
-        [Key]
+        public Guid ShiftId { get; set; }
         public Guid Employee { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
