@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ParasocialsPOSAPI.Models;
-using System.Data.Entity;
 
 namespace ParasocialsPOSAPI.Data
 {
@@ -38,6 +37,22 @@ namespace ParasocialsPOSAPI.Data
             modelBuilder.Entity<Reservation>().HasKey(e => e.ReservationId);
             modelBuilder.Entity<Shift>().HasKey(e => e.ShiftId);
             modelBuilder.Entity<Tax>().HasKey(e => e.TaxId);
+
+            modelBuilder.Entity<Company>().Property(e => e.SupplierId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Tip>().Property(e => e.TipId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Customer>().Property(e => e.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Discount>().Property(e => e.DiscountId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Employee>().Property(e => e.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Group>().Property(e => e.GroupId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Inventory>().Property(e => e.InventoryId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Loyalty>().Property(e => e.LoyaltyId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Order>().Property(e => e.OrderId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Position>().Property(e => e.PositionId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Premise>().Property(e => e.PremiseId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<RefundTicket>().Property(e => e.RefundTicketId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Reservation>().Property(e => e.ReservationId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Shift>().Property(e => e.ShiftId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Tax>().Property(e => e.TaxId).ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Discount>().HasOne(e => e.Group).WithOne(x => x.Discount);
             modelBuilder.Entity<Employee>().HasOne(e => e.Position).WithMany(x => x.Employees);

@@ -1,6 +1,4 @@
-﻿using ParasocialsPOSAPI.Models;
-
-namespace System.Data.Entity;
+﻿namespace ParasocialsPOSAPI.Models;
 
 public class Company
 {
