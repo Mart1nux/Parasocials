@@ -14,8 +14,5 @@ namespace ParasocialsPOSAPI.Models
 
         public Guid InventoryId {get; set;}
         public Inventory Inventory { get; set; }
-
-        public Guid OrderId {get; set;}
-        public Order Order { get; set; }
     }
 }
