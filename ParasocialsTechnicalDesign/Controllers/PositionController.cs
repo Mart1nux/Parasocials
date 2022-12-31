@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using ParasocialsPOSAPI.Data_Transfer_Objects;
 using Microsoft.EntityFrameworkCore;
 using ParasocialsPOSAPI.Data;
 using ParasocialsPOSAPI.Models;
@@ -10,17 +12,19 @@ namespace ParasocialsPOSAPI.Controllers
     public class PositionController : Controller
     {
         private readonly ParasocialsPOSAPIDbContext dbContext;
+        private readonly IMapper _mapper;
 
-        public PositionController(ParasocialsPOSAPIDbContext dbContext)
+        public PositionController(ParasocialsPOSAPIDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            _mapper = mapper;
         }
 
         [HttpGet]
         [Route("/getPositions")]
         public async Task<IActionResult> GetPositionList()
         {
-            return Ok(await dbContext.Positions.ToListAsync());
+            return Ok(_mapper.Map<List<PositionDTO>>(await dbContext.Positions.ToListAsync()));
         }
 
         [HttpGet]
@@ -30,7 +34,7 @@ namespace ParasocialsPOSAPI.Controllers
             var position = await dbContext.Positions.FindAsync(positionId);
             if (position != null)
             {
-                return Ok(position);
+                return Ok(_mapper.Map<Position>(position));
             }
             return NotFound();
         }
@@ -42,7 +46,7 @@ namespace ParasocialsPOSAPI.Controllers
             var position = await dbContext.Positions.Where(c => c.Title == title).FirstOrDefaultAsync();
             if (position != null)
             {
-                return Ok(position);
+                return Ok(_mapper.Map<Position>(position));
             }
             return NotFound();
         }
@@ -66,7 +70,7 @@ namespace ParasocialsPOSAPI.Controllers
                 await dbContext.Positions.AddAsync(position);
                 await dbContext.SaveChangesAsync();
 
-                return Ok(position);
+                return Ok(_mapper.Map<Position>(position));
             }
             return BadRequest();
         }
@@ -86,7 +90,7 @@ namespace ParasocialsPOSAPI.Controllers
                     position.Permisions = (PositionPermisions)permissions;
                     position.AccessToObjects = (PositionAccessToObjects)accesToObjects;
                     dbContext.SaveChanges();
-                    return Ok(position);
+                    return Ok(_mapper.Map<Position>(position));
                 }
             }
             return NotFound();
@@ -101,7 +105,7 @@ namespace ParasocialsPOSAPI.Controllers
             {
                 dbContext.Positions.Remove(position);
                 dbContext.SaveChanges();
-                return Ok(position);
+                return Ok(_mapper.Map<Position>(position));
             }
             return NotFound();
         }

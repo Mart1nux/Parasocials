@@ -2,16 +2,21 @@
 using Microsoft.EntityFrameworkCore;
 using ParasocialsPOSAPI.Data;
 using ParasocialsPOSAPI.Models;
-
+using AutoMapper;
+using ParasocialsPOSAPI.Data_Transfer_Objects;
 namespace ParasocialsPOSAPI.Controllers
 {
     [ApiController]
     public class ShiftController : Controller
     {
         private readonly ParasocialsPOSAPIDbContext dbContext;
-        public ShiftController(ParasocialsPOSAPIDbContext dbContext)
+        private readonly IMapper _mapper;
+
+        public ShiftController(ParasocialsPOSAPIDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            _mapper = mapper;
+
         }
 
         [HttpPut]
@@ -24,7 +29,7 @@ namespace ParasocialsPOSAPI.Controllers
                 shift.StartTime = startTime;
                 shift.EndTime = endTime;
                 dbContext.SaveChanges();
-                return Ok(shift);
+                return Ok(_mapper.Map<ShiftDTO>(shift));
             }
             return NotFound();
         }
@@ -44,7 +49,7 @@ namespace ParasocialsPOSAPI.Controllers
             await dbContext.Shifts.AddAsync(shift);
             await dbContext.SaveChangesAsync();
 
-            return Ok(shift);
+            return Ok(_mapper.Map<ShiftDTO>(shift));
         }
 
         [HttpGet]
@@ -54,7 +59,7 @@ namespace ParasocialsPOSAPI.Controllers
             var shift = await dbContext.Shifts.FindAsync(shiftId);
             if (shift != null)
             {
-                return Ok(shift);
+                return Ok(_mapper.Map<ShiftDTO>(shift));
             }
             return NotFound();
         }
@@ -63,7 +68,7 @@ namespace ParasocialsPOSAPI.Controllers
         [Route("/getShifts")]
         public async Task<IActionResult> GetShiftList()
         {
-            return Ok(await dbContext.Shifts.ToListAsync());
+            return Ok(_mapper.Map<List<ShiftDTO>>(await dbContext.Shifts.ToListAsync()));
         }
     }
 }
