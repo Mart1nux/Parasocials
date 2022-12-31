@@ -35,9 +35,11 @@ namespace ParasocialsPOSAPI.Controllers
         {
             var shift = new Shift()
             {
+                Employee = Guid.NewGuid(),
                 ShiftId = Guid.NewGuid(),
                 StartTime = startTime,
-                EndTime = endTime
+                EndTime = endTime,
+                Employees = new List<Employee>()
             };
             await dbContext.Shifts.AddAsync(shift);
             await dbContext.SaveChangesAsync();
