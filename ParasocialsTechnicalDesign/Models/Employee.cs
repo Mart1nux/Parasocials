@@ -8,7 +8,7 @@ namespace ParasocialsPOSAPI.Models
     {
         public Guid Id { get; set;}
         public string Email { get; set; }
-        public string password { get; set; }
+        public string Password { get; set; }
         public DateTime ClockInTime { get; set; }
         public DateTime ClockOutTime { get; set; }
         [Precision(14,2)]
