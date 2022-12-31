@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using ParasocialsPOSAPI.Data;
 using ParasocialsPOSAPI.Models;
+using AutoMapper;
+using ParasocialsPOSAPI.Data_Transfer_Objects;
 
 namespace ParasocialsPOSAPI.Controllers
 {
@@ -9,17 +11,21 @@ namespace ParasocialsPOSAPI.Controllers
     public class TipController : Controller
     {
         private readonly ParasocialsPOSAPIDbContext dbContext;
+        private readonly IMapper _mapper;
 
-        public TipController(ParasocialsPOSAPIDbContext dbContext)
+
+        public TipController(ParasocialsPOSAPIDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            _mapper = mapper;
+
         }
 
         [HttpGet]
         [Route("/getTips")]
         public async Task<IActionResult> GetTipList()
         {
-            return Ok(await dbContext.Tips.ToListAsync());
+            return Ok(_mapper.Map<TipDTO>(await dbContext.Tips.ToListAsync()));
         }
 
         [HttpGet]
@@ -29,7 +35,7 @@ namespace ParasocialsPOSAPI.Controllers
             var tip = await dbContext.Tips.FindAsync(tipId);
             if (tip != null)
             {
-                return Ok(tip);
+                return Ok(_mapper.Map<TipDTO>(tip));
             }
             return NotFound();
         }
@@ -50,7 +56,7 @@ namespace ParasocialsPOSAPI.Controllers
             await dbContext.Tips.AddAsync(tip);
             await dbContext.SaveChangesAsync();
 
-            return Ok(tip);
+            return Ok(_mapper.Map<TipDTO>(tip));
         }
 
         [HttpDelete]
@@ -62,7 +68,7 @@ namespace ParasocialsPOSAPI.Controllers
             {
                 dbContext.Tips.Remove(tip);
                 dbContext.SaveChanges();
-                return Ok(tip);
+                return Ok(_mapper.Map<TipDTO>(tip));
             }
             return NotFound();
         }

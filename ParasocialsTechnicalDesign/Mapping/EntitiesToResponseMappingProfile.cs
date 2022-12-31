@@ -20,6 +20,7 @@ public class EntitiesToResponseMappingProfile : Profile
         CreateMap<RefundTicket, RefundTicketDTO>();
         CreateMap<Reservation, ReservationDTO>();
         CreateMap<Shift, ShiftDTO>();
+        CreateMap<Order, OrderDTO>();
         CreateMap<Tax, TaxDTO>();
         CreateMap<Tip, TipDTO>();    
     }
