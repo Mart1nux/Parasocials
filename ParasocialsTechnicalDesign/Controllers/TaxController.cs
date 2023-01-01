@@ -41,7 +41,7 @@ namespace ParasocialsPOSAPI.Controllers
                     await dbContext.Taxes.AddAsync(tax);
                     await dbContext.SaveChangesAsync();
 
-                    return Ok(_mapper.Map<Position>(tax));
+                    return Ok(_mapper.Map<TaxDTO>(tax));
                 }
                 return Unauthorized();
             }
@@ -52,7 +52,7 @@ namespace ParasocialsPOSAPI.Controllers
         [Route("/taxes")]
         public async Task<IActionResult> GetTaxList()
         {
-            return Ok(_mapper.Map<List<PositionDTO>>(await dbContext.Taxes.Include(e => e.Group).ToListAsync()));
+            return Ok(_mapper.Map<List<TaxDTO>>(await dbContext.Taxes.Include(e => e.Group).ToListAsync()));
         }
 
         [HttpGet]
@@ -86,7 +86,7 @@ namespace ParasocialsPOSAPI.Controllers
                         }
                         if(taxes.Count > 0)
                         {
-                            return Ok(_mapper.Map<List<PositionDTO>>(taxes));
+                            return Ok(_mapper.Map<List<TaxDTO>>(taxes));
                         }
                     }
                 }
@@ -127,7 +127,7 @@ namespace ParasocialsPOSAPI.Controllers
                         {
                             dbContext.Taxes.RemoveRange(taxes);
                             dbContext.SaveChanges();
-                            return Ok(_mapper.Map<List<PositionDTO>>(taxes));
+                            return Ok(_mapper.Map<List<TaxDTO>>(taxes));
                         }
                     }
                 }
@@ -173,7 +173,7 @@ namespace ParasocialsPOSAPI.Controllers
                                 tax.Reason = reason;
                             }
                             dbContext.SaveChanges();
-                            return Ok(_mapper.Map<List<PositionDTO>>(taxes));
+                            return Ok(_mapper.Map<List<TaxDTO>>(taxes));
                         }
                     }
                 }
