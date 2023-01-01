@@ -67,7 +67,7 @@ namespace ParasocialsPOSAPI.Controllers
         [Route("/getGroups")]
         public async Task<IActionResult> GetGroupList()
         {
-            return Ok(await dbContext.Group.ToListAsync());
+            return Ok(await dbContext.Group.Include(e => e.Tax).ToListAsync());
         }
 
         [HttpGet]

@@ -78,6 +78,25 @@ namespace ParasocialsPOSAPI.Controllers
             return NotFound();
         }
 
+        [HttpPut]
+        [Route("/AddProductToGroup/{productId:guid}")]
+        public async Task<IActionResult> AddProductToGroup([FromRoute] Guid productId, Guid groupId)
+        {
+            var product = await dbContext.Products.Include(e => e.Groups).Where(c => c.ProductId == productId).FirstOrDefaultAsync();
+            if (product != null)
+            {
+                var group = await dbContext.Group.Include(e => e.Products).Where(c => c.GroupId == groupId).FirstOrDefaultAsync();
+                if (group != null)
+                {
+                    group.Products.Add(product);
+                    product.Groups.Add(group);
+                    await dbContext.SaveChangesAsync();
+                    return Ok(product);
+                }
+            }
+            return NotFound();
+        }
+
         [HttpDelete]
         [Route("/productsDeleteById/{productId:guid}")]
         public async Task<IActionResult> DeleteProductById([FromRoute] Guid productId)
