@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using ParasocialsPOSAPI.Data;
 using ParasocialsPOSAPI.Models;
+using AutoMapper;
+using ParasocialsPOSAPI.Data_Transfer_Objects;
 
 namespace ParasocialsPOSAPI.Controllers
 {
@@ -9,10 +11,14 @@ namespace ParasocialsPOSAPI.Controllers
     public class CustomerController : Controller
     {
         private readonly ParasocialsPOSAPIDbContext dbContext;
+        private readonly IMapper _mapper;
 
-        public CustomerController(ParasocialsPOSAPIDbContext dbContext)
+
+        public CustomerController(ParasocialsPOSAPIDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            _mapper = mapper;
+
         }
 
         [HttpPost]
@@ -45,7 +51,7 @@ namespace ParasocialsPOSAPI.Controllers
             await dbContext.Customers.AddAsync(customer);
             await dbContext.SaveChangesAsync();
 
-            return Ok(customer);
+            return Ok(_mapper.Map<CustomerDTO>(customer));
         }
 
         [HttpPost]
@@ -78,7 +84,7 @@ namespace ParasocialsPOSAPI.Controllers
             await dbContext.Customers.AddAsync(customer);
             await dbContext.SaveChangesAsync();
 
-            return Ok(customer);
+            return Ok(_mapper.Map<CustomerDTO>(customer));
         }
 
         [HttpDelete]
@@ -90,7 +96,7 @@ namespace ParasocialsPOSAPI.Controllers
             {
                 dbContext.Customers.Remove(customer);
                 dbContext.SaveChanges();
-                return Ok(customer);
+                return Ok(_mapper.Map<CustomerDTO>(customer));
             }
             return NotFound();
         }
@@ -108,7 +114,7 @@ namespace ParasocialsPOSAPI.Controllers
                 customer.PhoneNumber = phoneNumber;
                 customer.Email = emailAddress;
                 dbContext.SaveChanges();
-                return Ok(customer);
+                return Ok(_mapper.Map<CustomerDTO>(customer));
             }
             return NotFound();
         }
@@ -122,7 +128,7 @@ namespace ParasocialsPOSAPI.Controllers
             {
                 customer.Loyalty.Type = type;
                 dbContext.SaveChanges();
-                return Ok(customer);
+                return Ok(_mapper.Map<CustomerDTO>(customer));
             }
             return NotFound();
         }
@@ -134,7 +140,7 @@ namespace ParasocialsPOSAPI.Controllers
             var customer = await dbContext.Customers.FindAsync(customerId);
             if (customer != null)
             {
-                return Ok(customer);
+                return Ok(_mapper.Map<CustomerDTO>(customer));
             }
             return NotFound();
         }
@@ -146,7 +152,7 @@ namespace ParasocialsPOSAPI.Controllers
             var customer = await dbContext.Customers.Where(c => c.MembershipCard == membershipCard).FirstOrDefaultAsync();
             if (customer != null)
             {
-                return Ok(customer);
+                return Ok(_mapper.Map<CustomerDTO>(customer));
             }
             return NotFound();
         }
@@ -158,7 +164,7 @@ namespace ParasocialsPOSAPI.Controllers
             var customer = await dbContext.Customers.Where(c => c.Name == name).FirstOrDefaultAsync();
             if (customer != null)
             {
-                return Ok(customer);
+                return Ok(_mapper.Map<CustomerDTO>(customer));
             }
             return NotFound();
         }
@@ -170,7 +176,7 @@ namespace ParasocialsPOSAPI.Controllers
             var customer = await dbContext.Customers.Where(c => c.Surname == surname).FirstOrDefaultAsync();
             if (customer != null)
             {
-                return Ok(customer);
+                return Ok(_mapper.Map<CustomerDTO>(customer));
             }
             return NotFound();
         }
@@ -179,7 +185,7 @@ namespace ParasocialsPOSAPI.Controllers
         [Route("/getCustomers")]
         public async Task<IActionResult> GetCustomerList()
         {
-            return Ok(await dbContext.Customers.ToListAsync());
+            return Ok(_mapper.Map<List<CustomerDTO>>(await dbContext.Customers.ToListAsync()));
         }
     }
 }

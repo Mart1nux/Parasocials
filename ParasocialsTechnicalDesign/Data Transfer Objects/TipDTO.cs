@@ -7,5 +7,5 @@ public class TipDTO
         public String Giver { get; set; }
         public TipType Type { get; set; }
         public DateTime GivenDate { get; set; }
-        public Employee Receiver { get; set; }
+        public String Receiver { get; set; }
 }

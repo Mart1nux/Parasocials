@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using ParasocialsPOSAPI.Data;
 using ParasocialsPOSAPI.Models;
+using AutoMapper;
+using ParasocialsPOSAPI.Data_Transfer_Objects;
 
 namespace ParasocialsPOSAPI.Controllers
 {
@@ -9,17 +11,21 @@ namespace ParasocialsPOSAPI.Controllers
     public class CompanyController : Controller
     {
         private readonly ParasocialsPOSAPIDbContext dbContext;
+        private readonly IMapper _mapper;
 
-        public CompanyController(ParasocialsPOSAPIDbContext dbContext)
+
+        public CompanyController(ParasocialsPOSAPIDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            _mapper = mapper;
+
         }
 
         [HttpGet]
         [Route("/getCompanies")]
         public async Task<IActionResult> GetCompanyList()
         {
-            return Ok(await dbContext.Companies.ToListAsync());
+            return Ok(_mapper.Map<List<CompanyDTO>>(await dbContext.Companies.ToListAsync()));
         }
 
         [HttpGet]
@@ -33,7 +39,7 @@ namespace ParasocialsPOSAPI.Controllers
         [Route("/getCompaniesByServiceType/{serviceType}")]
         public async Task<IActionResult> GetCompanyByServiceType([FromRoute] CompanyServiceType serviceType)
         {
-            return Ok(await dbContext.Companies.Where(c => c.ServiceType == serviceType).ToListAsync());
+            return Ok(_mapper.Map<List<CompanyDTO>>(await dbContext.Companies.Where(c => c.ServiceType == serviceType).ToListAsync()));
         }
 
 
@@ -44,7 +50,7 @@ namespace ParasocialsPOSAPI.Controllers
             var company = await dbContext.Companies.Where(c => c.CompanyName == companyName).FirstOrDefaultAsync();
             if (company != null)
             {
-                return Ok(company);
+                return Ok(_mapper.Map<CompanyDTO>(company));
             }
             return NotFound();
         }
@@ -56,7 +62,7 @@ namespace ParasocialsPOSAPI.Controllers
             var company = await dbContext.Companies.FindAsync(supplierId);
             if (company != null)
             {
-                return Ok(company);
+                return Ok(_mapper.Map<CompanyDTO>(company));
             }
             return NotFound();
         }
@@ -93,7 +99,7 @@ namespace ParasocialsPOSAPI.Controllers
             await dbContext.Companies.AddAsync(company);
             await dbContext.SaveChangesAsync();
 
-            return Ok(company);
+            return Ok(_mapper.Map<CompanyDTO>(company));
         }
     }
 
