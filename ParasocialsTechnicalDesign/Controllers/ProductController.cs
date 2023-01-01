@@ -91,7 +91,7 @@ namespace ParasocialsPOSAPI.Controllers
                     group.Products.Add(product);
                     product.Groups.Add(group);
                     await dbContext.SaveChangesAsync();
-                    return Ok(product);
+                    return Ok(_mapper.Map<ProductDTO>(product));
                 }
             }
             return NotFound();
@@ -106,7 +106,7 @@ namespace ParasocialsPOSAPI.Controllers
             {
                 dbContext.Products.Remove(product);
                 await dbContext.SaveChangesAsync();
-                return Ok();
+                return Ok(_mapper.Map<ProductDTO>(product));
             }
             return NotFound();
         }
@@ -120,7 +120,7 @@ namespace ParasocialsPOSAPI.Controllers
             {
                 dbContext.Products.Remove(product);
                 await dbContext.SaveChangesAsync();
-                return Ok();
+                return Ok(_mapper.Map<ProductDTO>(product));
             }
             return NotFound();
         }
