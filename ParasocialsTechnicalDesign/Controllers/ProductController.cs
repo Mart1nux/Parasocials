@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using ParasocialsPOSAPI.Data;
 using ParasocialsPOSAPI.Models;
+using AutoMapper;
+using ParasocialsPOSAPI.Data_Transfer_Objects;
 
 
 namespace ParasocialsPOSAPI.Controllers
@@ -10,17 +12,21 @@ namespace ParasocialsPOSAPI.Controllers
     public class ProductController : Controller
     {
         private readonly ParasocialsPOSAPIDbContext dbContext;
+        private readonly IMapper _mapper;
 
-        public ProductController(ParasocialsPOSAPIDbContext dbContext)
+
+        public ProductController(ParasocialsPOSAPIDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            _mapper = mapper;
+
         }
 
         [HttpGet]
         [Route("/products")]
         public async Task<IActionResult> GetproductList()
         {
-            return Ok(await dbContext.Products.ToListAsync());
+            return Ok(_mapper.Map<List<ProductDTO>>(await dbContext.Products.ToListAsync()));
         }
 
         [HttpGet]
@@ -30,7 +36,7 @@ namespace ParasocialsPOSAPI.Controllers
             var product = await dbContext.Products.FindAsync(productId);
             if (product != null)
             {
-                return Ok(product);
+                return Ok(_mapper.Map<ProductDTO>(product));
             }
             return NotFound();
         }
@@ -53,7 +59,7 @@ namespace ParasocialsPOSAPI.Controllers
             await dbContext.Products.AddAsync(product);
             await dbContext.SaveChangesAsync();
 
-            return Ok(product);
+            return Ok(_mapper.Map<ProductDTO>(product));
         }
 
         [HttpPut]
@@ -67,7 +73,7 @@ namespace ParasocialsPOSAPI.Controllers
                 product.Name = name;
                 product.Price = price;
                 await dbContext.SaveChangesAsync();
-                return Ok(product);
+                return Ok(_mapper.Map<ProductDTO>(product));
             }
             return NotFound();
         }

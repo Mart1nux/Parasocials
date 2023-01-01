@@ -8,5 +8,5 @@ public class ReservationDTO
         public DateTime ReservationDate { get; set; }
         public DateTime Duration { get; set; }
         public string ReservationNotes { get; set; }
-        public Premise Premise { get; set; }
+        public String Premise { get; set; }
 }
