@@ -25,7 +25,7 @@ namespace ParasocialsPOSAPI.Controllers
         [Route("/orders")]
         public async Task<IActionResult> GetOrderList()
         {
-            return Ok(_mapper.Map<List<OrderDTO>>(await dbContext.Orders.ToListAsync()));
+            return Ok(_mapper.Map<List<OrderDTO>>(await dbContext.Orders.Include(e => e.Products).ToListAsync()));
         }
 
         [HttpPost]

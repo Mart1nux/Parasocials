@@ -25,7 +25,7 @@ namespace ParasocialsPOSAPI.Controllers
         [Route("/getTips")]
         public async Task<IActionResult> GetTipList()
         {
-            return Ok(_mapper.Map<TipDTO>(await dbContext.Tips.ToListAsync()));
+            return Ok(_mapper.Map<List<TipDTO>>(await dbContext.Tips.ToListAsync()));
         }
 
         [HttpGet]
@@ -50,7 +50,7 @@ namespace ParasocialsPOSAPI.Controllers
                 Giver = giver,
                 Type = tipType,
                 GivenDate = givenDate,
-                Receiver = new Employee()//receiver
+                // Receiver = new Employee()//receiver
             };
 
             await dbContext.Tips.AddAsync(tip);

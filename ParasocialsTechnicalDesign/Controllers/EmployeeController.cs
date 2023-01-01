@@ -5,6 +5,8 @@ using ParasocialsPOSAPI.Data;
 using ParasocialsPOSAPI.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection.Metadata.Ecma335;
+using AutoMapper;
+using ParasocialsPOSAPI.Data_Transfer_Objects;
 
 namespace ParasocialsPOSAPI.Controllers
 {
@@ -12,9 +14,13 @@ namespace ParasocialsPOSAPI.Controllers
     public class EmployeeController : Controller
     {
         private readonly ParasocialsPOSAPIDbContext dbContext;
-        public EmployeeController(ParasocialsPOSAPIDbContext dbContext)
+        private readonly IMapper _mapper;
+
+        public EmployeeController(ParasocialsPOSAPIDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            _mapper = mapper;
+
         }
 
         [HttpPost]
@@ -34,7 +40,7 @@ namespace ParasocialsPOSAPI.Controllers
                 };
                 await dbContext.Employees.AddAsync(employee);
                 await dbContext.SaveChangesAsync();
-                return Ok(employee);
+                return Ok(_mapper.Map<EmployeeDTO>(employee));
             }
             return NotFound();
         }
@@ -48,7 +54,7 @@ namespace ParasocialsPOSAPI.Controllers
             {
                 dbContext.Employees.Remove(employee);
                 dbContext.SaveChanges();
-                return Ok(employee);
+                return Ok(_mapper.Map<EmployeeDTO>(employee));
             }
             return NotFound();
         }
@@ -68,7 +74,7 @@ namespace ParasocialsPOSAPI.Controllers
                     employee.HourlyPayRate = hourlyPayRate;
                     employee.Position = position;
                     dbContext.SaveChanges();
-                    return Ok(employee);
+                    return Ok(_mapper.Map<EmployeeDTO>(employee));
                 }
             }
             return NotFound();
@@ -81,7 +87,7 @@ namespace ParasocialsPOSAPI.Controllers
             var employee = await dbContext.Employees.Where(c => c.Email == email).Include(e => e.Position).FirstOrDefaultAsync();
             if (employee != null)
             {
-                return Ok(employee);
+                return Ok(_mapper.Map<EmployeeDTO>(employee));
             }
             return NotFound();
         }
@@ -93,7 +99,7 @@ namespace ParasocialsPOSAPI.Controllers
             var employee = await dbContext.Employees.Where(c => c.Id == employeeId).Include(e => e.Position).FirstOrDefaultAsync();
             if (employee != null)
             {
-                return Ok(employee);
+                return Ok(_mapper.Map<EmployeeDTO>(employee));
             }
             return NotFound();
         }
@@ -102,7 +108,9 @@ namespace ParasocialsPOSAPI.Controllers
         [Route("/getEmployees")]
         public async Task<IActionResult> GetEmployeeList()
         {
-            return Ok(await dbContext.Employees.Include(e => e.Position).ToListAsync());
+            var employees = await dbContext.Employees.Include(e => e.Position).ToListAsync();
+            employees.ForEach(x => _mapper.Map<PositionDTO>(x.Position));
+            return Ok(_mapper.Map<List<EmployeeDTO>>(employees));
         }
     }
 }
