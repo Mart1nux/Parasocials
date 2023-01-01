@@ -27,6 +27,8 @@ namespace ParasocialsPOSAPI.Controllers
         public async Task<IActionResult> AddDiscount(DiscountType type, decimal ammount, DateTime discountStart, DateTime discountEnd, Guid groupId)
         {
             var group = await dbContext.Group.FindAsync(groupId);
+            var oldDiscount = await dbContext.Discounts.Where(c => c.DiscountId == group.DiscountId).FirstOrDefaultAsync();
+            dbContext.Discounts.Remove(oldDiscount);
             var discount = new Discount
             {
                 DiscountId = Guid.NewGuid(),
