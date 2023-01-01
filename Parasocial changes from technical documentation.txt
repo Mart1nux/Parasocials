@@ -1,0 +1,4 @@
+Shift endpointai turi Get shift by id ir Get list of shifts yra daromi su visais metodais. Tai neatrodo logiška, ir akivaizdu, kad buvo padaryta klaida.
+Kai kur id duomens tipas yra int, mes pakeitėme i Guid.
+Nera budo kaip pridėti produktą i grupe, tai jis buvo padarytas.
+Nera jokiu endpointų su grupe, tai jie buvo sukurti.
