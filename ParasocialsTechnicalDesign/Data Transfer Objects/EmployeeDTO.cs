@@ -8,5 +8,5 @@ public class EmployeeDTO
         public string password { get; set; }
 
         public decimal HourlyPayRate { get; set; }
-        public Position Position { get; set; }
+        public String Position { get; set; }
 }
