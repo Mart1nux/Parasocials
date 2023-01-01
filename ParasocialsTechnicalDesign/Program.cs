@@ -15,9 +15,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ParasocialsPOSAPIDbContext>();
 
-//var a = new ParasocialsPOSAPIDbContext();
 
-
+builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 var app = builder.Build();
