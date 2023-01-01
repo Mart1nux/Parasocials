@@ -18,18 +18,35 @@ namespace ParasocialsPOSAPI.Controllers
         [Route("/createGroup/{groupName}")]
         public async Task<IActionResult> AddGroup([FromRoute] string groupName)
         {
-
             var group = new Group()
             {
                 GroupId = new Guid(),
                 GroupName = groupName,
-                Products = new List<Product>()
+                Products = new List<Product>(),
+                Discount = new Discount()
+                {
+                    DiscountId = new Guid()
+                }
             };
 
             await dbContext.Group.AddAsync(group);
             await dbContext.SaveChangesAsync();
 
             return Ok(group);
+        }
+
+        [HttpPut]
+        [Route("/editGroup/{groupId:Guid}")]
+        public async Task<IActionResult> ChangeGroup([FromRoute] Guid groupId, string groupName)
+        {
+            var group = await dbContext.Group.FindAsync(groupId);
+            if (group != null)
+            {
+                group.GroupName = groupName;
+                await dbContext.SaveChangesAsync();
+                return Ok(group);
+            }
+            return NotFound();
         }
 
         [HttpDelete]
@@ -51,6 +68,18 @@ namespace ParasocialsPOSAPI.Controllers
         public async Task<IActionResult> GetGroupList()
         {
             return Ok(await dbContext.Group.ToListAsync());
+        }
+
+        [HttpGet]
+        [Route("/getGroupsById/{groupId:Guid}")]
+        public async Task<IActionResult> GetGroupById([FromRoute] Guid groupId)
+        {
+            var group = await dbContext.Group.FindAsync(groupId);
+            if (group != null)
+            {
+                return Ok(group);
+            }
+            return NotFound();
         }
     }
 }
