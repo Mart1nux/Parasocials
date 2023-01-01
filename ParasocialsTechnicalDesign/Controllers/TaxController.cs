@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using ParasocialsPOSAPI.Data;
 using ParasocialsPOSAPI.Models;
 using System.Text.RegularExpressions;
+using AutoMapper;
+using ParasocialsPOSAPI.Data_Transfer_Objects;
 
 namespace ParasocialsPOSAPI.Controllers
 {
@@ -10,9 +12,11 @@ namespace ParasocialsPOSAPI.Controllers
     public class TaxController : Controller
     {
         private readonly ParasocialsPOSAPIDbContext dbContext;
-        public TaxController(ParasocialsPOSAPIDbContext dbContext)
+        private readonly IMapper _mapper;
+        public TaxController(ParasocialsPOSAPIDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -37,7 +41,7 @@ namespace ParasocialsPOSAPI.Controllers
                     await dbContext.Taxes.AddAsync(tax);
                     await dbContext.SaveChangesAsync();
 
-                    return Ok(tax);
+                    return Ok(_mapper.Map<Position>(tax));
                 }
                 return Unauthorized();
             }
@@ -48,7 +52,7 @@ namespace ParasocialsPOSAPI.Controllers
         [Route("/taxes")]
         public async Task<IActionResult> GetTaxList()
         {
-            return Ok(await dbContext.Taxes.Include(e => e.Group).ToListAsync());
+            return Ok(_mapper.Map<List<PositionDTO>>(await dbContext.Taxes.Include(e => e.Group).ToListAsync()));
         }
 
         [HttpGet]
@@ -82,7 +86,7 @@ namespace ParasocialsPOSAPI.Controllers
                         }
                         if(taxes.Count > 0)
                         {
-                            return Ok(taxes);
+                            return Ok(_mapper.Map<List<PositionDTO>>(taxes));
                         }
                     }
                 }
@@ -123,7 +127,7 @@ namespace ParasocialsPOSAPI.Controllers
                         {
                             dbContext.Taxes.RemoveRange(taxes);
                             dbContext.SaveChanges();
-                            return Ok(taxes);
+                            return Ok(_mapper.Map<List<PositionDTO>>(taxes));
                         }
                     }
                 }
@@ -169,7 +173,7 @@ namespace ParasocialsPOSAPI.Controllers
                                 tax.Reason = reason;
                             }
                             dbContext.SaveChanges();
-                            return Ok(taxes);
+                            return Ok(_mapper.Map<List<PositionDTO>>(taxes));
                         }
                     }
                 }
