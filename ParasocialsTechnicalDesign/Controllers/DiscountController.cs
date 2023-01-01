@@ -82,11 +82,16 @@ namespace ParasocialsPOSAPI.Controllers
         public async Task<IActionResult> DeleteDiscountByGroupName([FromRoute] string productGroupName)
         {
             var discount = await dbContext.Discounts.Where(c => c.Group.GroupName == productGroupName).FirstOrDefaultAsync();
+            var group = await dbContext.Group.Where(c => c.GroupName == productGroupName).FirstOrDefaultAsync();
             if (discount != null)
             {
+                group.Discount = new Discount()
+                {
+                    DiscountId = new Guid()
+                };
                 dbContext.Discounts.Remove(discount);
                 await dbContext.SaveChangesAsync();
-                return Ok();
+                return Ok(_mapper.Map<DiscountDTO>(discount));
             }
             return NotFound();
         }
