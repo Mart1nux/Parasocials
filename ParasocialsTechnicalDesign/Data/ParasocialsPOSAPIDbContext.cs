@@ -77,6 +77,7 @@ namespace ParasocialsPOSAPI.Data
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<Shift> Shifts { get; set; }
+        public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<Tip> Tips { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<RefundTicket> RefundTickets { get; set; }
