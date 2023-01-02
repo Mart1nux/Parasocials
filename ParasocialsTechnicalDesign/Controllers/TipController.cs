@@ -25,14 +25,14 @@ namespace ParasocialsPOSAPI.Controllers
         [Route("/getTips")]
         public async Task<IActionResult> GetTipList()
         {
-            return Ok(_mapper.Map<List<TipDTO>>(await dbContext.Tips.ToListAsync()));
+            return Ok(_mapper.Map<List<TipDTO>>(await dbContext.Tips.Include(e => e.Receiver).ToListAsync()));
         }
 
         [HttpGet]
         [Route("/getTipById/{tipId:guid}")]
         public async Task<IActionResult> GetTip([FromRoute] Guid tipId)
         {
-            var tip = await dbContext.Tips.FindAsync(tipId);
+            var tip = await dbContext.Tips.Include(e => e.Receiver).Where(c => c.TipId == tipId).FirstOrDefaultAsync();
             if (tip != null)
             {
                 return Ok(_mapper.Map<TipDTO>(tip));
@@ -44,19 +44,24 @@ namespace ParasocialsPOSAPI.Controllers
         [Route("/createTip/{giver}")]
         public async Task<IActionResult> AddTip([FromRoute] string giver, TipType tipType, DateTime givenDate, Guid receiver)
         {
-            var tip = new Tip()
+            var employee = await dbContext.Employees.FindAsync(receiver);
+            if(employee != null)
             {
-                TipId = Guid.NewGuid(),
-                Giver = giver,
-                Type = tipType,
-                GivenDate = givenDate,
-                // Receiver = new Employee()//receiver
-            };
+                var tip = new Tip()
+                {
+                    TipId = Guid.NewGuid(),
+                    Giver = giver,
+                    Type = tipType,
+                    GivenDate = givenDate,
+                    Receiver = employee
+                };
 
-            await dbContext.Tips.AddAsync(tip);
-            await dbContext.SaveChangesAsync();
+                await dbContext.Tips.AddAsync(tip);
+                await dbContext.SaveChangesAsync();
 
-            return Ok(_mapper.Map<TipDTO>(tip));
+                return Ok(_mapper.Map<TipDTO>(tip));
+            }
+            return NotFound();
         }
 
         [HttpDelete]
