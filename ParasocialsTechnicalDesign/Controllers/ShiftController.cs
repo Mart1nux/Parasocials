@@ -36,6 +36,24 @@ namespace ParasocialsPOSAPI.Controllers
             return NotFound();
         }
 
+        [HttpPut]
+        [Route("/addEmployeeToShift/{shiftId:Guid}")]
+        public async Task<IActionResult> AddEmployee([FromRoute] Guid shiftId, Guid employeeId)
+        {
+            var shift = await dbContext.Shifts.Include(e => e.Employees).Where(c => c.ShiftId == shiftId).FirstOrDefaultAsync();
+            if (shift != null)
+            {
+                var employee = await dbContext.Employees.FindAsync(employeeId);
+                if (employee != null)
+                {
+                    shift.Employees.Add(employee);
+                    dbContext.SaveChanges();
+                    return Ok(_mapper.Map<ShiftDTO>(shift));
+                }
+            }
+            return NotFound();
+        }
+
         [HttpPost]
         [Route("/createShift/{startTime}")]
         public async Task<IActionResult> CreateShift([FromRoute] DateTime startTime, DateTime endTime)
